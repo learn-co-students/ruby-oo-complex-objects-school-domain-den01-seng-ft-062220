@@ -4,24 +4,23 @@ class School
     def initialize(school_name) 
         @school_name = school_name
         @roster = {}
+        # keys = grade levels (num), values = student names (array) 
     end
 
-    def roster
-        @roster
-        # keys are grade levels
-        # values are arrays of student names
-    end
-
-    # grade will be the keys in the roster hash
     def grade(number)
-        # hash[new_key]
         @roster[number] 
     end
 
     def add_student(student_name, grade)
+        if @roster.include?(grade) == false
+            @roster[grade] = []
+        end
+        @roster[grade] << student_name
     end
 
     def sort
+        @roster.each do |grade, student_name| 
+            @roster[grade] = student_name.sort
+        end
     end
 end
- 
